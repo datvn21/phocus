@@ -22,7 +22,7 @@
 </script>
 
 <div
-  class="min-h-12 h-12 rounded-lg w-full flex hover:bg-white/20 transition-colors duration-200 flex-row-reverse items-center"
+  class="min-h-12 xl:h-16 h-12 rounded-lg w-full flex hover:bg-white/20 transition-colors duration-200 flex-row-reverse items-center"
 >
   <div class="flex flex-row-reverse gap-2 pr-2">
     <button
@@ -56,7 +56,11 @@
   <button
     draggable="true"
     onmousedown={(e) => drag_app(e)}
-    class=" w-full h-full"
+    class=" w-full h-full flex items-center justify-start"
     aria-label="Drag"
-  ></button>
+    ><span
+      class="px-2 py-1 font-medium text-white/60 hover:text-white/80 hover:scale-105 transition-transform duration-200 rounded-md text-xl"
+      >Phocus</span
+    ></button
+  >
 </div>

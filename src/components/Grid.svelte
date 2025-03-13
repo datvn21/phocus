@@ -1,21 +1,31 @@
 <script>
+  // @ts-nocheck
+
   import "gridstack/dist/gridstack.min.css";
   import { GridStack } from "gridstack";
   import Clock from "./Clock.svelte";
   import Task from "./Task.svelte";
   import Music from "./Music.svelte";
   import { onMount } from "svelte";
+  import Widget from "./Widget.svelte";
 
   onMount(() => {
-    var items = [
-      { content: "hi" }, // will default to location (0,0) and 1x1
-      { w: 1, content: "another longer widget!" },
-      { w: 1, content: "another longer widget!" },
-      { w: 1, content: "another longer widget!" }, // will be placed next at (1,0) and 2x1
-    ];
-    var grid = GridStack.init({ float: true });
-    grid.load(items);
+    var grid = GridStack.init({
+      maxRow: 8,
+      float: true,
+      disableResize: true,
+      cellHeight: "auto",
+      minRow: 4, // Giữ bố cục không quá dày đặc
+      resizable: {
+        handles: "e, se, s, sw, w", // Giới hạn resize theo hướng mong muốn
+      },
+    });
+    grid.load();
   });
 </script>
 
-<div class="w-full h-full grid-stack"></div>
+<div class=" w-full h-full grid-stack overflow-y-hidden">
+  <Widget w={3} h={3}><Clock /></Widget>
+  <Widget w={3} h={3}><Clock /></Widget>
+  <Widget w={6} h={2}><Music /></Widget>
+</div>

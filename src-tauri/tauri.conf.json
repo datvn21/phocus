@@ -13,10 +13,12 @@
     "windows": [
       {
         "title": "Phocus",
-        "width": 1000,
-        "height": 800,
+        "width": 900,
+        "height": 650,
         "transparent": true,
-        "decorations": false
+        "decorations": false,
+        "resizable": false,
+        "maximizable": true
       }
     ],
     "security": {

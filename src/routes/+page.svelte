@@ -13,4 +13,4 @@
   };
 </script>
 
-<div class="w-full h-full"><Grid></Grid></div>
+<div class="w-full h-full xl:px-26"><Grid></Grid></div>
