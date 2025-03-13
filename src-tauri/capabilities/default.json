@@ -1,0 +1,32 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
+  "windows": ["main"],
+  "permissions": [
+    { "identifier": "core:default" },
+    { "identifier": "opener:default" },
+    { "identifier": "core:window:default" },
+    { "identifier": "core:window:allow-start-dragging" },
+    { "identifier": "core:window:allow-close" },
+    { "identifier": "core:window:allow-minimize" },
+    { "identifier": "core:window:allow-is-fullscreen" },
+    { "identifier": "core:window:allow-set-fullscreen" },
+    { "identifier": "core:window:allow-toggle-maximize" },
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "yt-dlp",
+          "cmd": "./bin/yt-dlp",
+          "args": [
+            "--dump-json",
+            {
+              "validator": "\\S+"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
