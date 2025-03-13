@@ -1,4 +1,6 @@
 <script>
+  import Grid from "../components/Grid.svelte";
+
   import fetchYT from "../utils/fetchYT";
   let url = $state("");
   // @ts-ignore
@@ -11,10 +13,4 @@
   };
 </script>
 
-<form onsubmit={fetch}>
-  <input type="text" />
-  <button>get url</button>
-  {#if url}
-    <audio src={url} controls></audio>
-  {/if}
-</form>
+<div class="w-full h-full"><Grid></Grid></div>

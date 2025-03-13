@@ -11,9 +11,6 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.0.13
         version: 4.0.13
-      '@tailwindcss/vite':
-        specifier: ^4.0.13
-        version: 4.0.13(vite@6.2.1(jiti@2.4.2)(lightningcss@1.29.2))
       '@tauri-apps/api':
         specifier: ^2
         version: 2.3.0
@@ -23,6 +20,9 @@ importers:
       '@tauri-apps/plugin-shell':
         specifier: ~2
         version: 2.2.0
+      gridstack:
+        specifier: ^11.4.0
+        version: 11.4.0
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
@@ -441,11 +441,6 @@ packages:
   '@tailwindcss/postcss@4.0.13':
     resolution: {integrity: sha512-zTmnPGDYb2HKClTBTBwB+lLQH+Rq4etnQXFXs2lisRyXryUnoJIBByFTljkaK9F1d7o14h6t4NJIlfbZuOHR+A==}
 
-  '@tailwindcss/vite@4.0.13':
-    resolution: {integrity: sha512-0XTd/NoVUAktIDaA4MdXhve0QWYh7WlZg20EHCuBFR80F8FhbVkRX+AY5cjbUP/IO2itHzt0iHc0iSE5kBUMhQ==}
-    peerDependencies:
-      vite: ^5.2.0 || ^6
-
   '@tauri-apps/api@2.3.0':
     resolution: {integrity: sha512-33Z+0lX2wgZbx1SPFfqvzI6su63hCBkbzv+5NexeYjIx7WA9htdOKoRR7Dh3dJyltqS5/J8vQFyybiRoaL0hlA==}
 
@@ -601,6 +596,9 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  gridstack@11.4.0:
+    resolution: {integrity: sha512-V1faqcHZjbXODt/cMg8a0aIN1uqqR4R5lENTls3sP8vbArvHrYAa9UPzzJWR6+RqPMLxmFG/OG2Evnmu/XOE9A==}
 
   import-meta-resolve@4.1.0:
     resolution: {integrity: sha512-I6fiaX09Xivtk+THaMfAwnA3MVA5Big1WHF1Dfx9hFuvNIWpXnorlkzhcQf6ehrqQiiZECRt1poOAkPmer3ruw==}
@@ -1081,14 +1079,6 @@ snapshots:
       postcss: 8.5.3
       tailwindcss: 4.0.13
 
-  '@tailwindcss/vite@4.0.13(vite@6.2.1(jiti@2.4.2)(lightningcss@1.29.2))':
-    dependencies:
-      '@tailwindcss/node': 4.0.13
-      '@tailwindcss/oxide': 4.0.13
-      lightningcss: 1.29.2
-      tailwindcss: 4.0.13
-      vite: 6.2.1(jiti@2.4.2)(lightningcss@1.29.2)
-
   '@tauri-apps/api@2.3.0': {}
 
   '@tauri-apps/cli-darwin-arm64@2.3.1':
@@ -1215,6 +1205,8 @@ snapshots:
     optional: true
 
   graceful-fs@4.2.11: {}
+
+  gridstack@11.4.0: {}
 
   import-meta-resolve@4.1.0: {}
 

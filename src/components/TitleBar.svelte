@@ -22,7 +22,7 @@
 </script>
 
 <div
-  class="h-12 rounded-lg w-full flex hover:bg-white/20 transition-colors duration-200 flex-row-reverse items-center"
+  class="min-h-12 h-12 rounded-lg w-full flex hover:bg-white/20 transition-colors duration-200 flex-row-reverse items-center"
 >
   <div class="flex flex-row-reverse gap-2 pr-2">
     <button
