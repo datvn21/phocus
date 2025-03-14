@@ -22,12 +22,12 @@
 </script>
 
 <div
-  class="min-h-12 xl:h-16 h-12 rounded-lg w-full flex hover:bg-white/20 transition-colors duration-200 flex-row-reverse items-center"
+  class="min-h-12 backdrop-blur-xs xl:h-16 h-12 rounded-lg w-full flex hover:bg-black/5 transition-colors duration-200 flex-row-reverse items-center"
 >
   <div class="flex flex-row-reverse gap-2 pr-2">
     <button
       onclick={close_app}
-      class="group w-8 h-8 flex justify-center items-center rounded-full bg-white/50 hover:bg-white/40 transition-colors duration-200"
+      class="group w-8 h-8 flex justify-center items-center rounded-full bg-black/20 hover:bg-white/40 transition-colors duration-200"
       ><img
         class="w-4 h-4 transition-transform duration-200 group-hover:scale-125"
         src="/X.svg"
@@ -36,7 +36,7 @@
     >
     <button
       onclick={minimize_app}
-      class="group w-8 h-8 flex justify-center items-center rounded-full bg-white/50 hover:bg-white/40 transition-colors duration-200"
+      class="group w-8 h-8 flex justify-center items-center rounded-full bg-black/20 hover:bg-white/40 transition-colors duration-200"
       ><img
         class="w-4 h-4 transition-transform duration-200 group-hover:scale-125"
         src="/Minus.svg"
@@ -45,7 +45,7 @@
     >
     <button
       onclick={fullscreen_app}
-      class="group w-8 h-8 flex justify-center items-center rounded-full bg-white/50 hover:bg-white/40 transition-colors duration-200"
+      class="group w-8 h-8 flex justify-center items-center rounded-full bg-black/20 hover:bg-white/40 transition-colors duration-200"
       ><img
         class="w-4 h-4 transition-transform duration-200 group-hover:scale-125"
         src="/CornersOut.svg"
@@ -59,7 +59,7 @@
     class=" w-full h-full flex items-center justify-start"
     aria-label="Drag"
     ><span
-      class="px-2 py-1 font-medium text-white/60 hover:text-white/80 hover:scale-105 transition-transform duration-200 rounded-md text-xl"
+      class="px-2 py-1 font-medium text-black/50 hover:text-black/80 hover:scale-105 transition-transform duration-200 rounded-md text-xl"
       >Phocus</span
     ></button
   >
