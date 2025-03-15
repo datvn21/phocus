@@ -2,6 +2,8 @@
 
 Phocus is a minimalist Pomodoro and focus management app built with Tauri, designed to help users boost productivity by balancing work and rest effectively.
 
+## I'm focusing on Window App.
+
 ## Features
 
 - 🌟 **Pomodoro Timer**: Set customizable work and break intervals.
