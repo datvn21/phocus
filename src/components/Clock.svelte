@@ -31,7 +31,7 @@
 </script>
 
 <div
-  class="flex items-center gap-0.5 font-mono bg-white/80 justify-center rounded-lg h-full w-full text-2xl xl:text-4xl"
+  class="flex items-center backdrop-blur-xl gap-0.5 font-mono bg-white/80 hover:bg-white transition-colors duration-200 justify-center rounded-lg xl:rounded-xl h-full w-full text-2xl xl:text-4xl"
 >
   <span>{padStart($hours)}</span>
   <span class="text-zinc-500">:</span>

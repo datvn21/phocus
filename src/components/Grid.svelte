@@ -8,6 +8,7 @@
   import Music from "./Music.svelte";
   import { onMount } from "svelte";
   import Widget from "./Widget.svelte";
+  import CounterTime from "./CounterTime.svelte";
 
   onMount(() => {
     var grid = GridStack.init({
@@ -20,12 +21,11 @@
         handles: "e, se, s, sw, w", // Giới hạn resize theo hướng mong muốn
       },
     });
-    grid.load();
   });
 </script>
 
 <div class=" w-full h-full grid-stack overflow-y-hidden">
   <Widget w={3} h={3}><Clock /></Widget>
-  <Widget w={3} h={3}><Clock /></Widget>
+  <Widget w={3} h={3}><CounterTime /></Widget>
   <Widget w={6} h={2}><Music /></Widget>
 </div>

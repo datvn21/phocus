@@ -29,7 +29,9 @@
   }
 </script>
 
-<div class="w-full h-full bg-white/80 rounded-lg">
+<div
+  class="w-full h-full bg-white/80 hover:bg-white transition-colors duration-200 rounded-lg xl:rounded-xl"
+>
   {#if data}
     <div
       class="flex flex-row gap-2 max-h-full items-center justify-center h-full overflow-hidden"
