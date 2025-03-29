@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TitleBar from "../TitleBar";
 import { Outlet } from "react-router";
 import { Toaster } from "../ui/sonner";
+
+import { setData } from "../../utils/store";
 export default function AppLayout() {
+  const [isSettingWindow, setIsSettingWindow] = useState(false);
+  const container = useRef(null);
+
+  useEffect(() => {
+    const updateContainerSize = async () => {
+      if (!container.current) return; // Kiểm tra container đã được mount chưa
+
+      const offSet = [
+        container.current.offsetWidth,
+        container.current.offsetHeight,
+      ];
+
+      console.log(await setData("container", offSet));
+      setIsSettingWindow(true);
+    };
+
+    updateContainerSize();
+  }, []);
+
   return (
     <>
       <main
@@ -22,7 +43,9 @@ export default function AppLayout() {
         className="p-4 h-lvh gap-2 xl:gap-8 grid grid-rows-[3rem_auto]"
       >
         <TitleBar />
-        <Outlet />
+        <div ref={container} className="w-full h-full rikka">
+          {isSettingWindow && <Outlet />}
+        </div>
       </main>
       <Toaster />
     </>

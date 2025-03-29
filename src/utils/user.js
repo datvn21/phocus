@@ -2,7 +2,6 @@ import { getData, setData } from "./store";
 
 export async function getUser() {
   const user = await getData("user");
-  console.log(user);
   return user;
 }
 

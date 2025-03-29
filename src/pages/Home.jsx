@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getUser, removeUser } from "../utils/user";
 import { useNavigate } from "react-router";
 import SetUp from "@/components/WorkSpace/SetUp";
+import DragAndDrop from "@/components/WorkSpace/DragAndDrop";
+import WorkSpace from "./WorkSpace";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -22,5 +24,5 @@ export default function Home() {
   }, [navigate]);
 
   if (!user) return <div>not user...</div>;
-  return <SetUp />;
+  return <WorkSpace />;
 }

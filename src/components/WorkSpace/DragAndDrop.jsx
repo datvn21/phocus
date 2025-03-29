@@ -1,75 +1,104 @@
-import React, { useState, useRef, useEffect } from "react";
-import { DndContext, useDraggable } from "@dnd-kit/core";
+import { getData } from "@/utils/store";
+import React, { useState, useEffect, useRef, use } from "react";
+import GridLayout from "react-grid-layout";
 import Clock from "../Widgets/Clock";
 
-function Draggable({ id, x, y }) {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
-
-  return (
-    <div
-      ref={setNodeRef}
-      {...listeners}
-      {...attributes}
-      className="w-40 h-40 absolute cursor-pointer"
-      style={{
-        left: x,
-        top: y,
-        transform: transform
-          ? `translate(${transform.x}px, ${transform.y}px)`
-          : "none",
-      }}
-    >
-      <Clock />
-    </div>
-  );
-}
-
-export default function DragAndDrop() {
-  const [items, setItems] = useState({
-    1: { x: 50, y: 50 },
-    2: { x: 150, y: 50 },
-  });
-
-  const homeRef = useRef(null);
-  const [bounds, setBounds] = useState({ width: 0, height: 0 });
+const Home = () => {
+  const [rootLayout, setRootLayout] = useState(null);
+  const [gridWidth, setGridWidth] = useState(0);
+  const [rowHeight, setRowHeight] = useState(0);
+  const maxRows = 4;
+  const currentLayout = useRef(null);
 
   useEffect(() => {
-    if (homeRef.current) {
-      setBounds({
-        width: homeRef.current.offsetWidth,
-        height: homeRef.current.offsetHeight,
-      });
-    }
+    const fetchRootLayout = async () => {
+      const offSet = await getData("container");
+      setRootLayout(offSet);
+      setGridWidth(offSet[0]);
+      setRowHeight(offSet[1]);
+    };
+    fetchRootLayout();
   }, []);
 
-  const dragEnd = (e) => {
-    if (!e.delta) return;
-    const { id } = e.active;
-
-    setItems((prev) => {
-      const newX = Math.min(
-        Math.max(prev[id].x + e.delta.x, 0),
-        bounds.width - 40
+  useEffect(() => {
+    if (!rootLayout) return;
+    const handleResize = () => {
+      setGridWidth(
+        rootLayout[0] < currentLayout.current.offsetWidth
+          ? currentLayout.current.offsetWidth
+          : rootLayout[0]
       );
-      const newY = Math.min(
-        Math.max(prev[id].y + e.delta.y, 0),
-        bounds.height - 40
+      setRowHeight(
+        rootLayout[0] < currentLayout.current.offsetWidth
+          ? currentLayout.current.offsetHeight
+          : rootLayout[1]
       );
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [rootLayout]);
 
-      return { ...prev, [id]: { x: newX, y: newY } };
+  useEffect(() => {
+    console.log(gridWidth, rowHeight);
+  }, [gridWidth, rowHeight]);
+
+  // return (
+  //   <div className="w-full h-full" ref={currentLayout}>
+  //     hadwu
+  //   </div>
+  // );
+  const initialLayout = [
+    { i: "1", x: 0, y: 0, w: 1, h: 1 },
+    { i: "2", x: 2, y: 0, w: 2, h: 1 },
+    { i: "3", x: 4, y: 0, w: 2, h: 1 },
+  ];
+
+  const [layout, setLayout] = useState(initialLayout);
+
+  const handleLayoutChange = (newLayout) => {
+    let changed = false;
+    const fixedLayout = newLayout.map((item) => {
+      if (item.y + item.h > maxRows) {
+        changed = true;
+        return { ...item, y: maxRows - item.h };
+      }
+      return item;
     });
+
+    if (changed) setLayout(fixedLayout);
   };
 
   return (
-    <DndContext onDragEnd={dragEnd}>
-      <div
-        ref={homeRef}
-        className="relative w-full h-full rounded-xl overflow-hidden"
-      >
-        {Object.entries(items).map(([id, { x, y }]) => (
-          <Draggable key={id} id={id} x={x} y={y} />
-        ))}
-      </div>
-    </DndContext>
+    <div ref={currentLayout} className="overflow-hidden h-full">
+      {rootLayout && (
+        <GridLayout
+          className="layout h-full"
+          layout={layout}
+          cols={6}
+          maxRows={maxRows * 1}
+          rowHeight={(rowHeight - 5 * 5) / 4}
+          width={gridWidth}
+          isDraggable={true}
+          isResizable={true}
+          compactType={null}
+          preventCollision={true}
+          margin={[5, 5]}
+          //onLayoutChange={handleLayoutChange}
+        >
+          {layout.map((item) => (
+            <div
+              key={item.i}
+              className=" rounded-lg flex items-center justify-center"
+            >
+              <Clock key={item.i} />
+            </div>
+          ))}
+        </GridLayout>
+      )}
+    </div>
   );
-}
+};
+
+export default Home;

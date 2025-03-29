@@ -3,7 +3,7 @@ import React from "react";
 
 export default function WorkSpace() {
   return (
-    <div>
+    <div className="w-full h-full">
       <DragAndDrop />
     </div>
   );

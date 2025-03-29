@@ -1,7 +1,8 @@
+import { removeUser } from "@/utils/user";
 import CloseIcon from "../assets/Close.svg";
-import FullScreenIcon from "../assets/CornersOut.svg";
 import MinimizeIcon from "../assets/Minus.svg";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { RotateCcw } from "lucide-react";
 
 const TitleBar = () => {
   const appWindow = getCurrentWindow();
@@ -64,6 +65,19 @@ const TitleBar = () => {
         <span className="px-2 py-1 font-medium text-black/50 hover:text-black/80 hover:scale-105 transition-transform duration-200 rounded-md text-xl">
           Phocus
         </span>
+      </button>
+      <button
+        className="h-full hover:-rotate-180  transition-transform duration-300 flex items-center justify-center"
+        onClick={async () => {
+          await removeUser();
+          window.location.reload();
+        }}
+      >
+        <RotateCcw
+          strokeWidth={2.5}
+          className="text-black/50 hover:scale-110 hover:text-black"
+          size={20}
+        />
       </button>
     </div>
   );
