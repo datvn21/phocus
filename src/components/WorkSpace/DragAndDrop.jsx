@@ -1,9 +1,11 @@
 import { getData } from "@/utils/store";
-import React, { useState, useEffect, useRef, use } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import GridLayout from "react-grid-layout";
 import Clock from "../Widgets/Clock";
+import "./DragAndDrop.css";
+import RenderWidget from "../Widgets/RenderWidget";
 
-const Home = () => {
+const DragAndDrop = () => {
   const [rootLayout, setRootLayout] = useState(null);
   const [gridWidth, setGridWidth] = useState(0);
   const [rowHeight, setRowHeight] = useState(0);
@@ -40,19 +42,14 @@ const Home = () => {
     };
   }, [rootLayout]);
 
-  useEffect(() => {
-    console.log(gridWidth, rowHeight);
-  }, [gridWidth, rowHeight]);
+  // useEffect(() => {
+  //   console.log(gridWidth, rowHeight);
+  // }, [gridWidth, rowHeight]);
 
-  // return (
-  //   <div className="w-full h-full" ref={currentLayout}>
-  //     hadwu
-  //   </div>
-  // );
   const initialLayout = [
-    { i: "1", x: 0, y: 0, w: 1, h: 1 },
-    { i: "2", x: 2, y: 0, w: 2, h: 1 },
-    { i: "3", x: 4, y: 0, w: 2, h: 1 },
+    { i: "Clock_1", x: 0, y: 0, w: 1, h: 1, type: "clock" },
+    { i: "Clock_2", x: 2, y: 0, w: 2, h: 1, type: "clock" },
+    { i: "Music_3", x: 4, y: 0, w: 2, h: 2, type: "music" },
   ];
 
   const [layout, setLayout] = useState(initialLayout);
@@ -85,6 +82,7 @@ const Home = () => {
           compactType={null}
           preventCollision={true}
           margin={[5, 5]}
+
           //onLayoutChange={handleLayoutChange}
         >
           {layout.map((item) => (
@@ -92,7 +90,7 @@ const Home = () => {
               key={item.i}
               className=" rounded-lg flex items-center justify-center"
             >
-              <Clock key={item.i} />
+              <RenderWidget widget={item} />
             </div>
           ))}
         </GridLayout>
@@ -101,4 +99,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default DragAndDrop;

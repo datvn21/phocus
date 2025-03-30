@@ -17,7 +17,7 @@ export default function AppLayout() {
         container.current.offsetHeight,
       ];
 
-      console.log(await setData("container", offSet));
+      await setData("container", offSet);
       setIsSettingWindow(true);
     };
 
