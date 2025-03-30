@@ -59,12 +59,16 @@
 .react-grid-item > .react-resizable-handle::after {
   content: "";
   position: absolute;
-  right: 3px;
-  bottom: 3px;
-  width: 5px;
-  height: 5px;
-  border-right: 2px solid rgba(0, 0, 0, 0.4);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  right: 6px;
+  bottom: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 100px;
+  transition: all 300ms ease;
+}
+
+.react-grid-item:hover > .react-resizable-handle::after {
+  background-color: rgb(150, 150, 150, 0.4);
 }
 
 .react-resizable-hide > .react-resizable-handle {

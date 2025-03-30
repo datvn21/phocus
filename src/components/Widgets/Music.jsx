@@ -112,7 +112,7 @@ export default function Music() {
         onClick={togglePlay}
       >
         <img
-          className="w-auto h-full aspect-square object-cover rounded-full p-4 music-roation"
+          className="w-auto h-full aspect-square object-cover rounded-full xl:p-4 music-roation"
           src={music.thumbnail}
           alt={music.title}
         />
