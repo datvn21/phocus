@@ -1,8 +1,9 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import AppLayout from "./components/Layouts/AppLayout";
 import Welcome from "./pages/Welcome";
+
 function App() {
   return (
     <BrowserRouter>

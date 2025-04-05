@@ -1,3 +1,4 @@
+import { alertLoading, alertSuccess } from "@/lib/alertCustomized";
 import fetchYT from "@/utils/fetchYT";
 import { PauseIcon } from "lucide-react";
 import { GripHorizontal } from "lucide-react";
@@ -20,19 +21,22 @@ export default function Music() {
     if (!e.target[0].value) return;
     console.log("YouTube URL:", e.target[0].value);
     setUrl(e.target[0].value);
-    // Gọi function xử lý URL ở đây (ví dụ: getMp3Link(url))
   };
 
   useEffect(() => {
-    console.log(url);
+    // console.log(url);
     if (url === "") return;
     const fetchMusic = async () => {
-      const id = toast.loading("Loading music", {
-        closeButton: true,
-        duration: 3,
+      const id = alertLoading({
+        title: "Fetching...",
+        description: url,
       });
       const musicData = await fetchYT(url);
-      toast.success("Music loaded!", { id });
+      alertSuccess({
+        title: "Fetched Successfully",
+        description: musicData.title,
+        id,
+      });
       setMusic(musicData);
     };
     fetchMusic();
@@ -62,18 +66,17 @@ export default function Music() {
   if (!url)
     return (
       <form
-        className="bg-white/40 shadow h-full w-full pb-2 rounded-lg xl:rounded-xl hover:bg-white backdrop-blur-2xl px-4 py-2 flex flex-col items-center justify-center gap-4"
+        className="bg-white/40 drag-handle shadow h-full w-full pb-2 rounded-lg xl:rounded-xl hover:bg-white backdrop-blur-2xl px-4 py-2 flex flex-col items-center justify-center gap-4"
         onSubmit={handleSubmit}
       >
         <input
-          className="w-full xl:p-4 xl:text-xl p-2 rounded-lg outline-2"
+          className="w-full drag-cancel xl:text-base text-sm p-2 rounded-md xl:rounded-lg outline-2"
           type="url"
           placeholder="Paste link here..."
           required
         />
         <button
-          onMouseDown={(e) => e.stopPropagation()}
-          className="bg-black text-white xl:text-xl xl:px-6 xl:py-4 p-2 px-4 rounded-lg"
+          className="bg-black text-white drag-cancel xl:text-xl text-sm xl:px-4 xl:py-2 p-2 px-4 rounded-lg"
           type="submit"
         >
           Enter

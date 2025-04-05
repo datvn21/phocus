@@ -11,6 +11,14 @@
   animation: spin 15s linear infinite;
 }
 
+[data-description] {
+  font-weight: 600 !important;
+}
+
+[data-title] {
+  font-weight: 700 !important;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {

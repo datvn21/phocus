@@ -3,7 +3,7 @@ import React from "react";
 
 export default function WorkSpace() {
   return (
-    <div className="w-full h-full">
+    <div onDragOver={(e) => e.preventDefault()} className="w-full h-full">
       <DragAndDrop />
     </div>
   );

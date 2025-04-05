@@ -4,8 +4,10 @@ import { Outlet } from "react-router";
 import { Toaster } from "../ui/sonner";
 
 import { setData } from "../../utils/store";
+
 export default function AppLayout() {
   const [isSettingWindow, setIsSettingWindow] = useState(false);
+
   const container = useRef(null);
 
   useEffect(() => {
