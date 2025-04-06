@@ -1,11 +1,10 @@
 import "./DragAndDrop.css";
-import { getData } from "@/utils/store";
+import { getData, setData } from "@/utils/store";
 import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect, useRef } from "react";
 import GridLayout from "react-grid-layout";
 import RenderWidget from "../Widgets/RenderWidget";
 import { alertError } from "@/lib/alertCustomized";
-import MenuWidget from "./Menu/MenuWidget";
 import CommandBox from "../CommandBox";
 
 const DragAndDrop = () => {
@@ -50,13 +49,27 @@ const DragAndDrop = () => {
   const [map, setMap] = useState(Array(30).fill(0));
 
   useEffect(() => {
-    const initialLayout = [
-      { i: "Clock_1", x: 0, y: 0, w: 1, h: 1, type: "clock" },
-      { i: "Clock_2", x: 2, y: 0, w: 2, h: 1, type: "clock" },
-      { i: "Music_3", x: 4, y: 0, w: 1, h: 1, type: "music" },
-    ];
-    setLayout(initialLayout);
+    const fetchLayout = async () => {
+      const savedLayout = await getData("layout");
+      //console.log(savedLayout);
+      if (
+        savedLayout &&
+        JSON.stringify(savedLayout) !== JSON.stringify(layout)
+      ) {
+        setLayout(savedLayout);
+      }
+    };
+    fetchLayout();
   }, []);
+
+  useEffect(() => {
+    setMap(createMap(layout));
+    const saveLayout = async () => {
+      //console.log("Saving layout", layout);
+      await setData("layout", layout);
+    };
+    saveLayout();
+  }, [layout]);
 
   const createMap = (layout) => {
     let map = Array(30).fill(0);
@@ -72,10 +85,6 @@ const DragAndDrop = () => {
 
     return map;
   };
-
-  useEffect(() => {
-    setMap(createMap(layout));
-  }, [layout]);
 
   const handleLayoutChange = (newLayout) => {
     let changed = false;

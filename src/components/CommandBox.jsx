@@ -21,7 +21,7 @@ export default function CommandBox({ addWidget }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     const down = (e) => {
-      if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === "t" || (e.key === "T" && (e.metaKey || e.ctrlKey))) {
         e.preventDefault();
         setOpen((open) => !open);
       }

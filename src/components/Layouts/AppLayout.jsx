@@ -3,7 +3,7 @@ import TitleBar from "../TitleBar";
 import { Outlet } from "react-router";
 import { Toaster } from "../ui/sonner";
 
-import { setData } from "../../utils/store";
+import { getData, setData } from "../../utils/store";
 
 export default function AppLayout() {
   const [isSettingWindow, setIsSettingWindow] = useState(false);
@@ -18,9 +18,16 @@ export default function AppLayout() {
         container.current.offsetWidth,
         container.current.offsetHeight,
       ];
-
-      await setData("container", offSet);
-      setIsSettingWindow(true);
+      const fetchLayout = async () => {
+        // const savedLayout = await getData("container");
+        // console.log("Saving layout", savedLayout);
+        // if (savedLayout == null) {
+        //   await setData("container", offSet);
+        // }
+        await setData("container", offSet);
+        setIsSettingWindow(true);
+      };
+      fetchLayout();
     };
 
     updateContainerSize();
