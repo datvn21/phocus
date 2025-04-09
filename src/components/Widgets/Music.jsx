@@ -13,7 +13,7 @@ import { toast } from "sonner";
 export default function Music() {
   const [url, setUrl] = useState("");
   const [music, setMusic] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef(null);
 
   const handleSubmit = (e) => {
@@ -74,6 +74,8 @@ export default function Music() {
           type="url"
           placeholder="Paste link here..."
           required
+          spellCheck="false"
+          autoCorrect="off"
         />
         <button
           className="bg-black text-white drag-cancel xl:text-xl text-sm xl:px-4 xl:py-2 p-2 px-4 rounded-lg"
@@ -86,18 +88,17 @@ export default function Music() {
 
   if (!music || url == "")
     return (
-      <div className="flex justify-center items-center bg-white/40 shadow h-full w-full px-2 pb-2 rounded-lg xl:rounded-xl hover:bg-white backdrop-blur-2xl">
+      <div className="flex drag-handle justify-center items-center bg-white/40 shadow h-full w-full px-2 pb-2 rounded-lg xl:rounded-xl hover:bg-white backdrop-blur-2xl">
         <Loader2 className="animate-spin" size={40} strokeWidth={3} />
       </div>
     );
 
   return (
-    <div className="grid grid-rows-[30px_1fr] items-center bg-white/40 shadow h-full w-full px-2 pb-2 rounded-lg xl:rounded-xl hover:bg-white backdrop-blur-2xl">
+    <div className="grid drag-handle grid-rows-[30px_1fr] items-center bg-white/40 shadow h-full w-full px-2 pb-2 rounded-lg xl:rounded-xl hover:bg-white backdrop-blur-2xl">
       <div className="h-full w-full flex justify-between items-center">
         <EllipsisIcon className="text-black/30 hover:cursor-grab " size={20} />
         <button
-          className="w-auto h-full "
-          onMouseDown={(e) => e.stopPropagation()}
+          className="w-auto h-full drag-cancel"
           onClick={() => {
             setUrl("");
             setMusic(null);
@@ -111,11 +112,14 @@ export default function Music() {
       </div>
       <button
         onMouseDown={(e) => e.stopPropagation()}
-        className="h-full w-auto flex justify-center overflow-hidden items-center hover:scale-105 transition-transform duration-300"
+        className="h-full drag-cancel w-auto flex justify-center overflow-hidden items-center hover:scale-105 transition-transform duration-300"
         onClick={togglePlay}
       >
         <img
-          className="w-auto h-full aspect-square object-cover rounded-full xl:p-4 music-roation"
+          className={
+            "w-auto h-full aspect-square object-cover rounded-full xl:p-4 " +
+            (isPlaying ? "music-roation" : "")
+          }
           src={music.thumbnail}
           alt={music.title}
         />

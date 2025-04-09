@@ -13,7 +13,6 @@ import {
 import { Clock } from "lucide-react";
 import { Image } from "lucide-react";
 import { MusicIcon } from "lucide-react";
-import { Calendar } from "lucide-react";
 import { NotebookPenIcon } from "lucide-react";
 import { ListTodo } from "lucide-react";
 
@@ -21,7 +20,7 @@ export default function CommandBox({ addWidget }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     const down = (e) => {
-      if (e.key === "t" || (e.key === "T" && (e.metaKey || e.ctrlKey))) {
+      if ((e.key === "t" || e.key === "T") && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
       }
